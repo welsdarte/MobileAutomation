@@ -1,9 +1,10 @@
 package android.pageObjects;
 
+import Base.Util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sampleTest.Base.AppDriver;
+import Base.AppDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,53 +14,52 @@ public class BasePage {
     public BasePage(){
         PageFactory.initElements(new AppiumFieldDecorator(AppDriver.getDriver()), this);
     }
-
-    @FindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView")
-    public WebElement kapat_ilkPopup;
-
-    @FindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.Switch[3]")
-    public WebElement demo_switchButton;
-
-    @FindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.EditText")
-    public WebElement demo_epostaInput;
-
-    @FindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]")
-    public WebElement demo_girisButonu;
-
-    @FindBy (xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[10]")
-    public WebElement baglan_butonu;
-    By by_baglan_butonu = By.xpath("//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[10]");
-
-    @FindBy (xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup")
-    public WebElement cari;
-
-    @FindBy (xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[3]")
-    public WebElement cari_kart_ekleme;
-
-    @FindBy (xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup")
-    public WebElement sahis;
-
+    @FindBy(xpath = "//android.widget.TextView[@text='Kapat']")
+    public WebElement Kapat;
+    @FindBy(xpath = "//android.widget.Switch[3]")
+    public WebElement switch_3;
+    @FindBy(xpath = "//android.widget.EditText[@text='Eposta adresinizi giriniz...']")
+    public WebElement Epostaadresinizigiriniz;
+    @FindBy(xpath = "//android.widget.TextView[@text='Giriş']")
+    public WebElement Giriş;
+    @FindBy(xpath = "//android.widget.TextView[@text='Bağlan']")
+    public WebElement Bağlan;
+    @FindBy(xpath = "//android.widget.TextView[@text='Teklif']")
+    public WebElement Teklif;
+    @FindBy(xpath = "//android.widget.TextView[@text='Cari']")
+    public WebElement Cari;
+    @FindBy(xpath = "//android.widget.TextView[@text='Restoran']")
+    public WebElement Restoran;
     public void demoGirisiYap() throws InterruptedException {
+//		Scenario: "I must be able to login via demo account"
+        System.out.println("Dia app launched");
         Thread.sleep(4000);
-
-        kapat_ilkPopup.click();
-        Thread.sleep(10);
-
-        demo_switchButton.click();
-        Thread.sleep(10);
-
-        demo_epostaInput.sendKeys("utkudemircil28@gmail.com");
-        Thread.sleep(10);
-
-        demo_girisButonu.click();
-        Thread.sleep(5000);
-
-        new WebDriverWait(AppDriver.getDriver(), 10).until(ExpectedConditions.presenceOfElementLocated(by_baglan_butonu));
-        baglan_butonu.click();
+//		I clicked "Kapat" then
+        Kapat.click();
         Thread.sleep(1000);
-
-        cari.click();
-        Thread.sleep(2000);
+//		I clicked the 3rd switch then
+        switch_3.click();
+        Thread.sleep(1000);
+//		I typed 'utkudemircil28@gmail.com' to "Eposta adresinizi giriniz..."
+        Epostaadresinizigiriniz.sendKeys("utkudemircil28@gmail.com");
+//		I clicked "Giriş"
+        Giriş.click();
+//		I wait 10 seconds
+        Thread.sleep(1000 * 10);
+//		I clicked "Bağlan"
+        Bağlan.click();
+//		I wait 2 seconds
+        Thread.sleep(1000 * 2);
+//		I clicked "Teklif" then
+        Teklif.click();
+        Thread.sleep(1000);
+//		I clicked "Cari" then
+        Cari.click();
+        Thread.sleep(1000);
+//		I scroll max 5 times to click "Restoran"
+        Util.scrollNClick(Restoran,5);
+//		I wait 5 seconds
+        Thread.sleep(1000 * 5);
 
     }
 }

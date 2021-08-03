@@ -1,4 +1,4 @@
-package sampleTest.Base;
+package Base;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;

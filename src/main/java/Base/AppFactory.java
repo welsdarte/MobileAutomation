@@ -1,4 +1,4 @@
-package sampleTest.Base;
+package Base;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -32,10 +32,10 @@ public class AppFactory {
     public static void iOS_LaunchApp() throws MalformedURLException {
         cap = new DesiredCapabilities();
         cap.setCapability("platformName", "iOS");
-        cap.setCapability("deviceName", "iPhone 11");
+        cap.setCapability("deviceName", "iPhone 12");
         cap.setCapability("automationName", "XCUITest");
-        cap.setCapability("platformVersion", "13.5");
-        cap.setCapability("bundleId", "io.cloudgrey.the-app");
+        cap.setCapability("platformVersion", "14.5");
+        cap.setCapability("bundleId", "erp.dia");  /// ??????????????????????!'^^TGFNFQT^^TGHJM
         driver = new IOSDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap);
         AppDriver.setDriver(driver);
         System.out.println("iOS driver is set");

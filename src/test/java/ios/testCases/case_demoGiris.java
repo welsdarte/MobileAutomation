@@ -1,6 +1,6 @@
 package ios.testCases;
 
-import android.pageObjects.BasePage;
+import ios.pageObjects.BasePage;
 import org.testng.annotations.Test;
 
 public class case_demoGiris {

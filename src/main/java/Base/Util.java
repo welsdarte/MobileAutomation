@@ -1,8 +1,7 @@
-package sampleTest.Base;
+package Base;
 
 import com.google.common.collect.ImmutableList;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
@@ -11,7 +10,6 @@ import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
@@ -26,10 +24,16 @@ import java.util.HashMap;
 public class Util {
 
     private static Dimension windowSize;
-    private static Duration SCROLL_DUR = Duration.ofMillis(1000);
+    private static Duration SCROLL_DUR = Duration.ofMillis(100);
     private static double SCROLL_RATIO = 0.8;
     private static int ANDROID_SCROLL_DIVISOR = 3;
 
+
+    public static void scrollDown(int times){
+        for (int i = 0; i <times ; i++) {
+            scrollDown();
+        }
+    }
     public static void scrollDown(){
         Dimension dimension = AppDriver.getDriver().manage().window().getSize();
         int scrollStart = (int) (dimension.getHeight() * 0.5);
@@ -37,7 +41,7 @@ public class Util {
 
         new TouchAction((PerformsTouchActions) AppDriver.getDriver())
                 .press(PointOption.point(0, scrollStart))
-                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(0)))
                 .moveTo(PointOption.point(0, scrollEnd))
                 .release().perform();
     }
@@ -60,9 +64,9 @@ public class Util {
         }
     }
 
-    public static void scrollNClick(WebElement el){
+    public static void scrollNClick(WebElement el, int retryCount){
         int retry = 0;
-        while(retry <= 5){
+        while(retry <= retryCount){
             try{
                 el.click();
                 break;

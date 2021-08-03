@@ -3,7 +3,7 @@
 <suite name="Suite1" verbose="1">
 
     <listeners>
-        <listener class-name="sampleTest.Base.TestListener"></listener>
+        <listener class-name="Base.TestListener"></listener>
     </listeners>
     
     <test name="Android">
