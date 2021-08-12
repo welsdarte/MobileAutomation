@@ -137,7 +137,7 @@ public class Util {
         }
     }
 
-    protected static void swipe(Point start, Point end, Duration duration) {
+    public static void swipe(Point start, Point end, Duration duration) {
         boolean isAndroid = AppDriver.getDriver() instanceof AndroidDriver<?>;
 
         PointerInput input = new PointerInput(PointerInput.Kind.TOUCH, "finger1");

@@ -26,10 +26,10 @@ public WebElement Giriş;
 public WebElement Bağlan;
 @FindBy(xpath = "//android.widget.TextView[@text='Teklif']")
 public WebElement Teklif;
-@FindBy(xpath = "//android.widget.TextView[@text='Cari']")
-public WebElement Cari;
-@FindBy(xpath = "//android.widget.TextView[@text='Restoran']")
-public WebElement Restoran;
+@FindBy(xpath = "//android.widget.TextView[contains(@text,'Teklif Ekle')]")
+public WebElement TeklifEkle;
+@FindBy(xpath = "//android.widget.TextView[@text='Verilen Teklif Ekleme']")
+public WebElement VerilenTeklifEkleme;
     public void demoGirisiYap() throws InterruptedException {
 //		Scenario: "I must be able to login via demo account"
 System.out.println("Dia app launched");
@@ -53,13 +53,18 @@ Thread.sleep(1000 * 2);
 //		I clicked "Teklif" then
 Teklif.click();
 Thread.sleep(1000);
-//		I clicked "Cari" then
-Cari.click();
+//		I clicked "Teklif Ekle*" then
+TeklifEkle.click();
 Thread.sleep(1000);
-//		I scroll max 5 times to click "Restoran"
-Util.scrollNClick(Restoran,5);
-//		I wait 5 seconds
-Thread.sleep(1000 * 5);
+//		I clicked "Verilen Teklif Ekleme" then
+VerilenTeklifEkleme.click();
+Thread.sleep(1000);
+//		I wait 2 seconds
+Thread.sleep(1000 * 2);
+//		
+
+//		I wait 100 seconds
+Thread.sleep(1000 * 100);
 
 }
 }

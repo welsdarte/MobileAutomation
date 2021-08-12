@@ -57,7 +57,12 @@ public class ScenarioTranspiler {
                             action = "switch_"+format(number)+".click();";
                         }
                     }else if( ! name.startsWith("//")){
-                        declaration = "@FindBy(xpath = \"//android.widget.TextView[@text='"+name+"']\")\npublic WebElement "+format(name)+";";
+                        if(name.endsWith("*")){
+                            name = name.replaceAll("\\*","");
+                            declaration = "@FindBy(xpath = \"//android.widget.TextView[contains(@text,'"+name+"')]\")\npublic WebElement "+format(name)+";";
+                        }else{
+                            declaration = "@FindBy(xpath = \"//android.widget.TextView[@text='"+name+"']\")\npublic WebElement "+format(name)+";";
+                        }
                         action = format(name)+".click();";
                     }else{
                         declaration = "@FindBy(xpath = \""+name+"\")\npublic WebElement "+format(name)+";";
@@ -78,7 +83,7 @@ public class ScenarioTranspiler {
                     }else{
                         action = "Thread.sleep(1000 * "+seconds+");";
                     }
-                }else if(line.startsWith("I scroll")){
+                }else if(line.startsWith("I scrolled")){
                     if(line.contains("to click ")){
                         //flag
                         int count = 0;
@@ -94,6 +99,8 @@ public class ScenarioTranspiler {
                     }else{
                         action = "Util.scrollDown();";
                     }
+                }else if(line.startsWith("I swiped")){
+
                 }
             }
 
@@ -138,6 +145,8 @@ public class ScenarioTranspiler {
             return "unnamed"+(unnamedElementCount+1);
         }
         if(s.endsWith("..."))s = s.substring(0, s.length() - 3);
+
+        s = s.replaceAll("-", "_");
         return s.replaceAll(" ","");
     }
 }

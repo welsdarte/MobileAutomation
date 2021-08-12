@@ -7,6 +7,9 @@ I wait 10 seconds
 I clicked "Bağlan"
 I wait 2 seconds
 I clicked "Teklif" then
-I clicked "Cari" then
-I scroll max 5 times to click "Restoran"
-I wait 5 seconds
+I clicked "Teklif Ekle*" then
+I clicked "Verilen Teklif Ekle" then
+I swiped left from "Kalemler" 400px then
+I wait 2 seconds
+
+I wait 100 seconds

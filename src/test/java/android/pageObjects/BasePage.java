@@ -10,6 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.awt.*;
+import java.time.Duration;
+
 public class BasePage {
     public BasePage(){
         PageFactory.initElements(new AppiumFieldDecorator(AppDriver.getDriver()), this);
@@ -26,10 +29,14 @@ public class BasePage {
     public WebElement Bağlan;
     @FindBy(xpath = "//android.widget.TextView[@text='Teklif']")
     public WebElement Teklif;
-    @FindBy(xpath = "//android.widget.TextView[@text='Cari']")
-    public WebElement Cari;
-    @FindBy(xpath = "//android.widget.TextView[@text='Restoran']")
-    public WebElement Restoran;
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Teklif Ekle')]")
+    public WebElement TeklifEkle;
+    @FindBy(xpath = "//android.widget.TextView[@text='Verilen Teklif Ekle']")
+    public WebElement VerilenTeklifEkleme;
+
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Kalemler')]")
+    public WebElement Kalemler;
+
     public void demoGirisiYap() throws InterruptedException {
 //		Scenario: "I must be able to login via demo account"
         System.out.println("Dia app launched");
@@ -53,13 +60,24 @@ public class BasePage {
 //		I clicked "Teklif" then
         Teklif.click();
         Thread.sleep(1000);
-//		I clicked "Cari" then
-        Cari.click();
+//		I clicked "Teklif Ekle*" then
+        TeklifEkle.click();
         Thread.sleep(1000);
-//		I scroll max 5 times to click "Restoran"
-        Util.scrollNClick(Restoran,5);
-//		I wait 5 seconds
-        Thread.sleep(1000 * 5);
+//		I clicked "Verilen Teklif Ekleme" then
+        VerilenTeklifEkleme.click();
+        Thread.sleep(1000);
+//		I wait 2 seconds
+        Thread.sleep(1000 * 2);
+//
+
+        int kalemler_Y = Kalemler.getLocation().getY() + (Kalemler.getSize().getHeight() / 2);
+        int kalemler_X = Kalemler.getLocation().getX() + (Kalemler.getSize().getWidth() / 2);
+        Util.swipe(new Point(kalemler_X, kalemler_Y), new Point(kalemler_X - 300, kalemler_Y), Duration.ofMillis(300));
+
+//		I wait 100 seconds
+        Thread.sleep(1000 * 100);
+
+
 
     }
 }
