@@ -1,7 +1,7 @@
 Scenario: "I must be able to login via demo account"
 I clicked "Kapat" then
 I clicked the 3rd switch then
-I typed 'utkudemircil28@gmail.com' to "Eposta adresinizi giriniz..."
+I typed "utkudemircil28@gmail.com" to "Eposta adresinizi giriniz..."
 I clicked "Giriş"
 I wait 10 seconds
 I clicked "Bağlan"

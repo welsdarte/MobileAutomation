@@ -1,4 +1,4 @@
-package android.simpleScenarioToJavaCode;
+package simpleScenarioToJavaCode;
 
 import java.io.File;
 import java.io.FileNotFoundException;
