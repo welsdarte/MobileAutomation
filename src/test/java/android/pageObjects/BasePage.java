@@ -1,9 +1,6 @@
 package android.pageObjects;
 
 import Base.Util;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import Base.AppDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
@@ -23,7 +20,7 @@ public class BasePage {
     public WebElement switch_3;
     @FindBy(xpath = "//android.widget.EditText[@text='Eposta adresinizi giriniz...']")
     public WebElement Epostaadresinizigiriniz;
-    @FindBy(xpath = "//android.widget.TextView[@text='Giriş']")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text,'Giriş')]")
     public WebElement Giriş;
     @FindBy(xpath = "//android.widget.TextView[@text='Bağlan']")
     public WebElement Bağlan;

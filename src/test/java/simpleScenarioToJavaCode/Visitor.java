@@ -3,6 +3,7 @@ package simpleScenarioToJavaCode;
 public class Visitor extends amuParserBaseVisitor<Object>{
     @Override
     public Object visitScenario(amuParser.ScenarioContext ctx) {
+        System.out.println("=?=?=?==?=?=??=?=?=?=?=?=\n"+ ctx);
         return super.visitScenario(ctx);
     }
 
@@ -13,6 +14,8 @@ public class Visitor extends amuParserBaseVisitor<Object>{
 
     @Override
     public Object visitBody(amuParser.BodyContext ctx) {
+
+        System.out.println("^^^^\n"+ctx.getText());
         return super.visitBody(ctx);
     }
 
