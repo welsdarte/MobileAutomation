@@ -8,26 +8,6 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface amuParserListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link amuParser#scenario}.
-	 * @param ctx the parse tree
-	 */
-	void enterScenario(amuParser.ScenarioContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link amuParser#scenario}.
-	 * @param ctx the parse tree
-	 */
-	void exitScenario(amuParser.ScenarioContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link amuParser#head}.
-	 * @param ctx the parse tree
-	 */
-	void enterHead(amuParser.HeadContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link amuParser#head}.
-	 * @param ctx the parse tree
-	 */
-	void exitHead(amuParser.HeadContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link amuParser#body}.
 	 * @param ctx the parse tree
 	 */
@@ -38,6 +18,66 @@ public interface amuParserListener extends ParseTreeListener {
 	 */
 	void exitBody(amuParser.BodyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link amuParser#testCases}.
+	 * @param ctx the parse tree
+	 */
+	void enterTestCases(amuParser.TestCasesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link amuParser#testCases}.
+	 * @param ctx the parse tree
+	 */
+	void exitTestCases(amuParser.TestCasesContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link amuParser#test}.
+	 * @param ctx the parse tree
+	 */
+	void enterTest(amuParser.TestContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link amuParser#test}.
+	 * @param ctx the parse tree
+	 */
+	void exitTest(amuParser.TestContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link amuParser#test_close}.
+	 * @param ctx the parse tree
+	 */
+	void enterTest_close(amuParser.Test_closeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link amuParser#test_close}.
+	 * @param ctx the parse tree
+	 */
+	void exitTest_close(amuParser.Test_closeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link amuParser#scenarios}.
+	 * @param ctx the parse tree
+	 */
+	void enterScenarios(amuParser.ScenariosContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link amuParser#scenarios}.
+	 * @param ctx the parse tree
+	 */
+	void exitScenarios(amuParser.ScenariosContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link amuParser#scenario}.
+	 * @param ctx the parse tree
+	 */
+	void enterScenario(amuParser.ScenarioContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link amuParser#scenario}.
+	 * @param ctx the parse tree
+	 */
+	void exitScenario(amuParser.ScenarioContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link amuParser#scenario_close}.
+	 * @param ctx the parse tree
+	 */
+	void enterScenario_close(amuParser.Scenario_closeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link amuParser#scenario_close}.
+	 * @param ctx the parse tree
+	 */
+	void exitScenario_close(amuParser.Scenario_closeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link amuParser#line}.
 	 * @param ctx the parse tree
 	 */
@@ -47,6 +87,16 @@ public interface amuParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLine(amuParser.LineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link amuParser#label}.
+	 * @param ctx the parse tree
+	 */
+	void enterLabel(amuParser.LabelContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link amuParser#label}.
+	 * @param ctx the parse tree
+	 */
+	void exitLabel(amuParser.LabelContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link amuParser#action}.
 	 * @param ctx the parse tree

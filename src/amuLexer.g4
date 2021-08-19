@@ -1,12 +1,28 @@
 lexer grammar amuLexer;
-SCENARIO: 'Scenario: ';
-I: 'I';
 
+SCENARIO_OPEN
+	: SCENARIO_IDENT NEW_LINE* LB NEW_LINE+
+	;
+TEST_OPEN
+    : TEST_IDENT NEW_LINE* OPEN_BRACE NEW_LINE*
+    ;
+SCENARIO_REF
+    : '<' SCENARIO_IDENT '>';
+fragment SCENARIO_IDENT
+    : [_a-zA-Z][_0-9a-zA-Z]*
+    ;
+fragment TEST_IDENT
+    : [_a-zA-Z][_0-9a-zA-Z]*
+    ;
+I:                'I';
 OPEN_BRACE:       '(';
 CLOSE_BRACE:      ')';
+LB:               '{';
+RB:               '}';
 X:                'x';
 Y:                'y';
 COMMA:            ',';
+COLON:            ':';
 MINUS:            '-';
 TO:              'to';
 FROM:          'from';
@@ -17,6 +33,7 @@ SECONDS:    'seconds';
 POINT:        'point';
 TIMES:        'times';
 MAX:            'max';
+
 
 //Directions
 DIRECTION: UP | DOWN | LEFT | RIGHT;
@@ -43,6 +60,8 @@ SWIPE:    'swiped' | 'swipe';
 THEN: 'then';
 AND: 'and';
 
+FINALLY: 'finally' | 'lastly';
+
 STRING
 	: '"' STRING_CONTENT* '"'
 	| '\''STRING_CONTENT* '\''
@@ -51,7 +70,7 @@ fragment STRING_CONTENT:    ~[\\\r\n'"]
                          	| '\\' [abfnrtv'"\\]
                          	;
 fragment COMMENT
-	: '#' ~[\r\n]*
+	: '//' ~[\r\n]*
 	;
 INTEGER: DEC+;
 
@@ -64,7 +83,7 @@ fragment TH : 'st'| 'nd'| 'rd'| 'th';
 X_PIXEL: INTEGER PX;
 X_TH : INTEGER TH;
 X_SECONDS: INTEGER ' ' SECONDS;
-X_TIMES: INTEGER TIMES;
+X_TIMES: INTEGER ' ' TIMES;
 
 //elements that can be reached by xpath index only
 INDEXABLE_ELEMENT: 'switch';

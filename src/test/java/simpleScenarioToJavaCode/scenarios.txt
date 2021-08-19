@@ -1,15 +1,39 @@
-Scenario: "I must be able to login via demo account"
-I clicked "Kapat" then
-I clicked the 3rd switch then
-I typed "utkudemircil28@gmail.com" to "Eposta adresinizi giriniz..."
-I clicked "Giriş"
-I wait 10 seconds
-I clicked "Bağlan"
-I wait 2 seconds
-I clicked "Teklif" then
-I clicked "Teklif Ekle*" then
-I clicked "Verilen Teklif Ekle" then
-I swiped left from "Kalemler" 400px then
-I wait 2 seconds
+basitGiris{
+    I clicked "Kapat" then
+    I typed "testalper" to "Üye Kodu" and
+    I typed "dia" to "Kullanıcı Adı" and
+    I typed "dia" to "Parola" and
+    I clicked "Giriş Yap" and
+    I wait 5 seconds and
+    I clicked "Bağlan" and
+    I wait 5 seconds and
+}
 
-I wait 100 seconds
+cariKartEkle{
+    I clicked "Cari" then
+    I clicked "Cari Kart Ekleme*" then
+    I clicked "Şahıs" then
+    I clicked 200px right of "* Cari Kodu" then
+    I typed "333.666.999" then
+    I clicked right of "Ünvan" then
+    I typed "test1234" then
+    I wait 2 seconds then
+    I clicked the point 1000-180 then
+    I clicked the point 1000-180 then
+    I clicked "Tamam" then
+    I clicked the point 200 200 then
+}
+cariKartListele{
+    I clicked "Cari" then
+    I clicked "Cari Kart Listesi*" then
+    I typed "test12\n" to "Arama yap..." then
+    I wait 2 seconds and
+    I clicked "test1234" and
+    I wait 3 seconds then
+}
+
+testCase(
+    <basitGiris>
+    <cariKartEkle>
+    <cariKartListele>
+)

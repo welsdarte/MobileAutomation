@@ -11,29 +11,59 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface amuParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link amuParser#scenario}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitScenario(amuParser.ScenarioContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link amuParser#head}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitHead(amuParser.HeadContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link amuParser#body}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitBody(amuParser.BodyContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link amuParser#testCases}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTestCases(amuParser.TestCasesContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link amuParser#test}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTest(amuParser.TestContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link amuParser#test_close}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTest_close(amuParser.Test_closeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link amuParser#scenarios}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScenarios(amuParser.ScenariosContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link amuParser#scenario}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScenario(amuParser.ScenarioContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link amuParser#scenario_close}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScenario_close(amuParser.Scenario_closeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link amuParser#line}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitLine(amuParser.LineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link amuParser#label}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLabel(amuParser.LabelContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link amuParser#action}.
 	 * @param ctx the parse tree

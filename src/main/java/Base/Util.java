@@ -136,6 +136,26 @@ public class Util {
             swipe(new Point(right, midPoint.y), new Point(left, midPoint.y), SCROLL_DUR);
         }
     }
+    public static void scroll(String dir, double distance) {
+        if (distance < 0 || distance > 1) {
+            throw new Error("Scroll distance must be between 0 and 1");
+        }
+        Dimension size = getWindowSize();
+        Point midPoint = new Point((int)(size.width * 0.5), (int)(size.height * 0.5));
+        int top = midPoint.y - (int)((size.height * distance) * 0.5);
+        int bottom = midPoint.y + (int)((size.height * distance) * 0.5);
+        int left = midPoint.x - (int)((size.width * distance) * 0.5);
+        int right = midPoint.x + (int)((size.width * distance) * 0.5);
+        if (dir.equalsIgnoreCase("up")) {
+            swipe(new Point(midPoint.x, top), new Point(midPoint.x, bottom), SCROLL_DUR);
+        } else if (dir.equalsIgnoreCase("down")) {
+            swipe(new Point(midPoint.x, bottom), new Point(midPoint.x, top), SCROLL_DUR);
+        } else if (dir.equalsIgnoreCase("left")) {
+            swipe(new Point(left, midPoint.y), new Point(right, midPoint.y), SCROLL_DUR);
+        } else {
+            swipe(new Point(right, midPoint.y), new Point(left, midPoint.y), SCROLL_DUR);
+        }
+    }
 
     public static void swipe(Point start, Point end, Duration duration) {
         boolean isAndroid = AppDriver.getDriver() instanceof AndroidDriver<?>;

@@ -3,18 +3,31 @@ parser grammar amuParser;
 options {
 	tokenVocab = amuLexer;
 }
-
+body: scenarios testCases;
+testCases
+    : NEW_LINE* (test NEW_LINE*)*
+    ;
+test
+    : TEST_OPEN (label NEW_LINE)+ test_close
+    ;
+test_close
+    : NEW_LINE* CLOSE_BRACE NEW_LINE
+    ;
+scenarios
+    : (scenario NEW_LINE*)*
+    ;
 scenario
-    : head body
+    : SCENARIO_OPEN line+ scenario_close
     ;
-head
-    : SCENARIO STRING NEW_LINE?
-    ;
-body
-    : line+
-    ;
+scenario_close
+    : NEW_LINE* RB NEW_LINE*;
 line
-    : (action end?) NEW_LINE
+    : (action end) NEW_LINE*
+    | (action FINALLY) NEW_LINE*
+    | label NEW_LINE*
+    ;
+label
+    : SCENARIO_REF
     ;
 action
     : actionClick
@@ -36,6 +49,7 @@ actionClick
     ;
 actionType
     : I TYPE STRING TO element
+    | I TYPE STRING
     ;
 actionWait
     : I WAIT
@@ -50,7 +64,7 @@ actionSwipe
     : I SWIPE DIRECTION
     | I SWIPE DIRECTION FROM element
     | I SWIPE DIRECTION FROM element X_PIXEL
-    | I SWIPE FROM element TO element // getting two points from two different elements and swiping one from the other ( havent tried it yet)
+    | I SWIPE FROM element TO element // getting two points from two different elements and swiping one from other ( havent tried it yet)
     | I SWIPE FROM point TO point
     ;
 element

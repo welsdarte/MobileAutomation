@@ -9,7 +9,7 @@
     <test name="Android">
         <parameter name="platform" value="android"></parameter>
         <classes>
-            <class name="android.testCases.case_demoGiris" />
+            <class name="android.testCases.testCases" />
         </classes >
     </test>
 
