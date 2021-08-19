@@ -14,9 +14,9 @@ cariKartEkle{
     I clicked "Cari Kart Ekleme*" then
     I clicked "Şahıs" then
     I clicked 200px right of "* Cari Kodu" then
-    I typed "333.666.999" then
+    I typed "333.999" then
     I clicked right of "Ünvan" then
-    I typed "test1234" then
+    I typed "testutku2" then
     I wait 2 seconds then
     I clicked the point 1000-180 then
     I clicked the point 1000-180 then
@@ -26,14 +26,16 @@ cariKartEkle{
 cariKartListele{
     I clicked "Cari" then
     I clicked "Cari Kart Listesi*" then
-    I typed "test12\n" to "Arama yap..." then
-    I wait 2 seconds and
-    I clicked "test1234" and
-    I wait 3 seconds then
+}
+cariKartSilEnUstten{
+    I swiped from 900 400 to 100 400 then
+    I clicked the point 1000 400 then
+    I clicked "Sil" then
+    I clicked "Sil" then
 }
 
-testCase(
+testCaseCariSil(
     <basitGiris>
-    <cariKartEkle>
     <cariKartListele>
+    <cariKartSilEnUstten>
 )

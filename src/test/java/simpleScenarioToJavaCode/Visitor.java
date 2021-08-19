@@ -154,33 +154,30 @@ public class Visitor extends amuParserBaseVisitor<Object>{
 
     @Override
     public Object visitActionType(amuParser.ActionTypeContext ctx) {
+        System.out.println(":: "+ctx.STRING());
         if(ctx.element() == null){
             currentDeclaration = "@FindBy(xpath = \"//*[@focused='true']\")\n";
             String randomId = randomIdGenerator();
             currentDeclaration+= "public WebElement EditText_"+randomId+";";
-            if(ctx.STRING().toString().contains("\n")){
-                currentStatement ="EditText_"+randomId+".click();\n";
+            if(ctx.STRING().toString().equals("ENTER")){
+                currentStatement ="Actions action"+randomId+" = new Actions(AppDriver.getDriver());\n";
+                currentStatement+="action"+randomId+".sendKeys(Keys.ENTER).perform();";
+            }else{
+                currentStatement ="EditText_"+randomId+".clear();\n";
                 currentStatement+="EditText_"+randomId+".sendKeys("+ ctx.STRING().toString().replaceAll("\n","")+");\n";
                 currentStatement+="Actions action"+randomId+" = new Actions(AppDriver.getDriver());\n";
                 currentStatement+="action"+randomId+".sendKeys(Keys.ENTER).perform();";
-            }else{
-                currentStatement ="EditText_"+randomId+".sendKeys("+ ctx.STRING().toString().replaceAll("\n","")+");\n";
-                currentStatement+="Actions action"+randomId+" = new Actions(AppDriver.getDriver());\n";
-                currentStatement+="action"+randomId+".sendKeys(Keys.ENTER).perform();";
             }
-
         }else{
             currentDeclaration = "@FindBy(xpath = \"//*[@text='"+f(ctx.element().STRING())+"']\")\n";
             currentDeclaration+= "public WebElement "+ identifierGenerator(ctx.element().STRING().toString()) + ";";
-            System.out.println("?_?_?_?_?__?_?_?_\n"+ctx.STRING());
-
-            if(ctx.STRING().toString().contains("\n")){
-                currentStatement =identifierGenerator(ctx.element().STRING().toString())+".click();\n";
-                currentStatement+=identifierGenerator(ctx.element().STRING().toString())+".sendKeys("+ ctx.STRING().toString().replaceAll("\n","")+");\n";
-                currentStatement+="Actions action"+identifierGenerator(ctx.element().STRING().toString())+" = new Actions(AppDriver.getDriver());\n";
+            if(ctx.STRING().toString().equals("ENTER")){
+                currentStatement ="Actions action"+identifierGenerator(ctx.element().STRING().toString())+" = new Actions(AppDriver.getDriver());\n";
                 currentStatement+="action"+identifierGenerator(ctx.element().STRING().toString())+".sendKeys(Keys.ENTER).perform();";
-            }else{
-                currentStatement=identifierGenerator(ctx.element().STRING().toString())+".sendKeys("+ ctx.STRING()+");";
+            }
+            else{
+                currentStatement =identifierGenerator(ctx.element().STRING().toString())+".clear();\n";
+                currentStatement+=identifierGenerator(ctx.element().STRING().toString())+".sendKeys("+ ctx.STRING()+");";
             }
         }
         return super.visitActionType(ctx);

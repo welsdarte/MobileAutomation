@@ -103,7 +103,15 @@ public class Transpiler {
             pr.write(JavaCode);
             pr.flush();
             pr.close();
+            pr = new PrintWriter("/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/android/pageObjects/BasePage.java");
+            pr.write(JavaCode);
+            pr.flush();
+            pr.close();
             pr = new PrintWriter("/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/simpleScenarioToJavaCode/outTestCases.txt");
+            pr.write(TestCode);
+            pr.flush();
+            pr.close();
+            pr = new PrintWriter("/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/android/testCases/testCases.java");
             pr.write(TestCode);
             pr.flush();
             pr.close();
