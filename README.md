@@ -1,8 +1,8 @@
 
--[Structure](##Structure)
--[AMU Language](##AMU LANGUAGE)
+-[STRUCTURE](#Structure)
+-[AMU LANGUAGE](#AMU Language)
 
-##Structure
+#Structure
     BasePage and TestCases are the main classes that hold out important test information.
     All element declarations and actions goes into BasePage class or another class that inherits the BasePage class (CariPage etc.)
     All action combinations goes into TestCases class or it's child classes
@@ -17,8 +17,16 @@
     @FindBy(xpath = "//*[contains(@text,'some text that included by another text')]")
     public WebElement elementName;
 
+    now you can use these variable to perform simple actions like:
 
-    
+    - elementName.click();
+    - elementName.clear();
+    - elementName.sendKeys("abc");
+
+
+#AMU Language
+
+
 
 
 
