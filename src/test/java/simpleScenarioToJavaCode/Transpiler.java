@@ -40,7 +40,7 @@ public class Transpiler {
             "import android.pageObjects.BasePage;\n" +
             "import org.testng.annotations.Test;\n" +
             "\n" +
-            "public class testCases {\n";
+            "public class TestCases {\n";
     //</editor-fold>
 
     public static void main(String[] args) {

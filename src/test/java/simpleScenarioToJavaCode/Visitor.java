@@ -171,14 +171,15 @@ public class Visitor extends amuParserBaseVisitor<Object>{
             currentStatement+="action"+randomId+".sendKeys(Keys.ENTER).perform();";
         }else{
             currentDeclaration = "@FindBy(xpath = \"//*[@text='"+f(ctx.element().STRING())+"']\")\n";
-            currentDeclaration+= "public WebElement "+ identifierGenerator(ctx.element().STRING().toString()) + ";";
+            String ID = identifierGenerator(ctx.element().STRING().toString());
+            currentDeclaration+= "public WebElement "+ ID + ";";
             if(ctx.STRING().toString().equals("<ENTER>")){
                 currentStatement ="Actions action"+identifierGenerator(ctx.element().STRING().toString())+" = new Actions(AppDriver.getDriver());\n";
                 currentStatement+="action"+identifierGenerator(ctx.element().STRING().toString())+".sendKeys(Keys.ENTER).perform();";
             }
             else{
-                currentStatement =identifierGenerator(ctx.element().STRING().toString())+".clear();\n";
-                currentStatement+=identifierGenerator(ctx.element().STRING().toString())+".sendKeys("+ ctx.STRING()+");";
+                currentStatement =ID+".clear();\n";
+                currentStatement+=ID+".sendKeys("+ ctx.STRING()+");";
             }
         }
         return super.visitActionType(ctx);
@@ -288,7 +289,7 @@ public class Visitor extends amuParserBaseVisitor<Object>{
         }else  if(identifier.contains("*")){
             identifier = identifier.replaceAll("[*]", "");
         }
-        return identifier;
+        return identifier+"_"+randomIdGenerator();
     }
     public int pixelExtractor(String s){
         s = s.replaceAll(" ", "");

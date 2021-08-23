@@ -56,6 +56,30 @@ yanlisCariEkle{
     I clicked "Tamam" then
     I clicked "mevcuttur*" then
 }
+actions{
+    // click
+    I click "some text" then
+    I clicked left of "some text" and
+    I click 200px up of "some text" then
+    I click the 4th indexableElement then //only switch works now
+    I click the 480, 120 and
+    // type
+    I typed "some string" to "some text" then
+    I type "some string" and//only when a textEdit is clicked and focused
+    I type "<ENTER>" then //special use case to press the enter key on keyboard
+    // wait
+    I wait and // DEFAULT_WAIT_TIME = 15
+    I wait 4 seconds then
+    // scroll
+    I scrolled and // same as "I scroll 1 times and"
+    I scrolled 5 times and
+    // swipe
+    I swipe left and
+    I swipe up from "some text" then
+    I swiped down from "some text" 400px then
+    I swiped from "some text" to "some other text" and
+    I swiped from 120 140 to 120 500 then//can be used as 'hold' action if start=end
+}
 
 // !--  Test Cases   --!
 tc(

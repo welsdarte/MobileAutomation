@@ -3,7 +3,7 @@ package android.testCases;
 import android.pageObjects.BasePage;
 import org.testng.annotations.Test;
 
-public class testCases {
+public class TestCases {
 @Test
 public void tc() throws InterruptedException {
 BasePage basePage = new BasePage();

@@ -30,7 +30,7 @@ TO:              'to';
 FROM:          'from';
 THE:            'the';
 OF:              'of';
-TO_CLICK: TO ' click';
+TO_CLICK: TO ' press';
 SECONDS:    'seconds';
 POINT:        'point';
 TIMES:        'times';
