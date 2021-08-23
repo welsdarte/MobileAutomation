@@ -16,11 +16,13 @@ public class Visitor extends amuParserBaseVisitor<Object>{
     String currentDeclaration;
     String currentStatement ;
     Point currentPoint;
-    int ThenTime = 1750;
-    int AndTime  =  350;
-    int DefaultWaitTime      =  15; //in seconds
-    int DefaultSwipeAmountPx = 300;
-    int DefaultTouchDistance = 200;
+    final int DEFAULT_THEN_TIME       = 1750;
+    final int DEFAULT_AND_TIME        = 350;
+    final int DEFAULT_WAIT_TIME       = 15; //in seconds
+    final int DEFAULT_SWIPE_PX_AMOUNT = 300;
+    final int DEFAULT_TOUCH_DISTANCE  = 200;
+    final int DEFAULT_SWIPE_TIME      = 700;
+
 
     @Override
     public Object visitBody(amuParser.BodyContext ctx) {
@@ -99,11 +101,11 @@ public class Visitor extends amuParserBaseVisitor<Object>{
     @Override
     public Object visitEnd(amuParser.EndContext ctx) {
         if(ctx.THEN() != null){
-            currentStatement +="\nThread.sleep("+ThenTime+");";
-            //statements.add("Thread.sleep("+ThenTime+");");
+            currentStatement +="\nThread.sleep("+DEFAULT_THEN_TIME+");";
+            //statements.add("Thread.sleep("+DEFAULT_THEN_TIME+");");
         }else if(ctx.AND() != null){
-            currentStatement += "\nThread.sleep("+AndTime+");";
-            //statements.add("Thread.sleep("+AndTime+");");
+            currentStatement += "\nThread.sleep("+DEFAULT_AND_TIME+");";
+            //statements.add("Thread.sleep("+DEFAULT_AND_TIME+");");
         }
 
         if(currentDeclaration != null && !declarations.contains(currentDeclaration))    declarations.add(currentDeclaration);
@@ -133,7 +135,7 @@ public class Visitor extends amuParserBaseVisitor<Object>{
             currentDeclaration+= "public WebElement "+ id+";";
             currentStatement =  "int Y_"+id+" = "+id+".getLocation().getY() + ("+id+".getSize().getHeight() / 2);\n" +
                     "int X_"+id+" = "+id+".getLocation().getX() + ("+id+".getSize().getWidth() / 2);\n";
-            currentStatement += "new TouchAction((PerformsTouchActions)AppDriver.getDriver()).press(PointOption.point("+getTouchCoordinates(ctx.DIRECTION().toString(),id,DefaultTouchDistance)+")).release().perform();";
+            currentStatement += "new TouchAction((PerformsTouchActions)AppDriver.getDriver()).press(PointOption.point("+getTouchCoordinates(ctx.DIRECTION().toString(),id,DEFAULT_TOUCH_DISTANCE)+")).release().perform();";
         }else if(ctx.DIRECTION() != null && ctx.X_PIXEL() != null){
             String id = identifierGenerator(ctx.element().STRING().toString());
             currentDeclaration = "@FindBy(xpath = \"//*[@text='"+f(ctx.element().STRING())+"']\")\n";
@@ -159,19 +161,18 @@ public class Visitor extends amuParserBaseVisitor<Object>{
             currentDeclaration = "@FindBy(xpath = \"//*[@focused='true']\")\n";
             String randomId = randomIdGenerator();
             currentDeclaration+= "public WebElement EditText_"+randomId+";";
-            if(ctx.STRING().toString().equals("ENTER")){
+            if(ctx.STRING().toString().equals("<ENTER>")){
                 currentStatement ="Actions action"+randomId+" = new Actions(AppDriver.getDriver());\n";
-                currentStatement+="action"+randomId+".sendKeys(Keys.ENTER).perform();";
             }else{
                 currentStatement ="EditText_"+randomId+".clear();\n";
                 currentStatement+="EditText_"+randomId+".sendKeys("+ ctx.STRING().toString().replaceAll("\n","")+");\n";
                 currentStatement+="Actions action"+randomId+" = new Actions(AppDriver.getDriver());\n";
-                currentStatement+="action"+randomId+".sendKeys(Keys.ENTER).perform();";
             }
+            currentStatement+="action"+randomId+".sendKeys(Keys.ENTER).perform();";
         }else{
             currentDeclaration = "@FindBy(xpath = \"//*[@text='"+f(ctx.element().STRING())+"']\")\n";
             currentDeclaration+= "public WebElement "+ identifierGenerator(ctx.element().STRING().toString()) + ";";
-            if(ctx.STRING().toString().equals("ENTER")){
+            if(ctx.STRING().toString().equals("<ENTER>")){
                 currentStatement ="Actions action"+identifierGenerator(ctx.element().STRING().toString())+" = new Actions(AppDriver.getDriver());\n";
                 currentStatement+="action"+identifierGenerator(ctx.element().STRING().toString())+".sendKeys(Keys.ENTER).perform();";
             }
@@ -188,7 +189,7 @@ public class Visitor extends amuParserBaseVisitor<Object>{
         if(ctx.X_SECONDS() != null){
             currentStatement="Thread.sleep("+ctx.X_SECONDS().toString().replace(" seconds", "")+" *1000);";
         }else{
-            currentStatement="Thread.sleep("+DefaultWaitTime * 1000+");";
+            currentStatement="Thread.sleep("+DEFAULT_WAIT_TIME * 1000+");";
         }
         return super.visitActionWait(ctx);
     }
@@ -208,7 +209,7 @@ public class Visitor extends amuParserBaseVisitor<Object>{
     @Override
     public Object visitActionSwipe(amuParser.ActionSwipeContext ctx) {
         if(ctx.FROM() == null){
-            currentStatement = "Util.scroll(\""+ctx.DIRECTION().toString()+"\", 200);";
+            currentStatement = "Util.scroll(\""+ctx.DIRECTION().toString()+"\", "+DEFAULT_SWIPE_TIME+");";
         }else if(ctx.DIRECTION() != null && ctx.X_PIXEL() == null){
             String id = identifierGenerator(ctx.element(0).STRING().toString());
             currentDeclaration = "@FindBy(xpath = \"//*[@text='"+f(ctx.element(0).STRING())+"']\")\n";
@@ -216,7 +217,7 @@ public class Visitor extends amuParserBaseVisitor<Object>{
             currentStatement =  "int Y_"+id+" = "+id+".getLocation().getY() + ("+id+".getSize().getHeight() / 2);\n" +
                                 "int X_"+id+" = "+id+".getLocation().getX() + ("+id+".getSize().getWidth() / 2);\n";
             String destinationCoordinates = getDestinationCoordinates(ctx.DIRECTION().toString(), id);
-            currentStatement += "Util.swipe(new Point(X_"+id+", Y_"+id+"), new Point("+destinationCoordinates+"), Duration.ofMillis(300));";
+            currentStatement += "Util.swipe(new Point(X_"+id+", Y_"+id+"), new Point("+destinationCoordinates+"), Duration.ofMillis("+DEFAULT_SWIPE_TIME+"));";
         }else if(ctx.DIRECTION() != null && ctx.X_PIXEL() != null){
             String id = identifierGenerator(ctx.element(0).STRING().toString());
             currentDeclaration = "@FindBy(xpath = \"//*[@text='"+f(ctx.element(0).STRING())+"']\")\n";
@@ -224,7 +225,7 @@ public class Visitor extends amuParserBaseVisitor<Object>{
             currentStatement =  "int Y_"+id+" = "+id+".getLocation().getY() + ("+id+".getSize().getHeight() / 2);\n" +
                     "int X_"+id+" = "+id+".getLocation().getX() + ("+id+".getSize().getWidth() / 2);\n";
             String destinationCoordinates = getDestinationCoordinates(ctx.DIRECTION().toString(), id);
-            currentStatement += "Util.swipe(new Point(X_"+id+", Y_"+id+"), new Point("+destinationCoordinates+"), "+"Duration.ofMillis("+pixelExtractor(ctx.X_PIXEL().toString())+"));";
+            currentStatement += "Util.swipe(new Point(X_"+id+", Y_"+id+"), new Point("+destinationCoordinates+"), "+"Duration.ofMillis("+DEFAULT_SWIPE_TIME+"));";
         }else if(ctx.element(1) != null){
             String id = identifierGenerator(ctx.element(0).STRING().toString());
             currentDeclaration = "@FindBy(xpath = \"//*[@text='"+f(ctx.element(0).STRING())+"']\")\n";
@@ -238,12 +239,12 @@ public class Visitor extends amuParserBaseVisitor<Object>{
             currentStatement += "int Y_"+id1+" = "+id1+".getLocation().getY() + ("+id1+".getSize().getHeight() / 2)\n" +
                                 "int X_"+id1+" = "+id1+".getLocation().getX() + ("+id1+".getSize().getWidth() / 2)\n";
 
-            currentStatement += "Util.swipe(new Point(X_"+id+", Y_"+id+"), new Point(X_"+id1+", Y_"+id1+"), Duration.ofMillis(300));";
+            currentStatement += "Util.swipe(new Point(X_"+id+", Y_"+id+"), new Point(X_"+id1+", Y_"+id1+"), Duration.ofMillis("+DEFAULT_SWIPE_TIME+"));";
         }else if(ctx.point(1) != null){
             visitPoint(ctx.point(0));
             currentStatement = "Util.swipe(new Point("+currentPoint.x+","+currentPoint.y+"),";
             visitPoint(ctx.point(1));
-            currentStatement +=" new Point("+currentPoint.x+", "+currentPoint.y+"), Duration.ofMillis(300));";
+            currentStatement +=" new Point("+currentPoint.x+", "+currentPoint.y+"), Duration.ofMillis("+DEFAULT_SWIPE_TIME+"));";
         }
 
         return super.visitActionSwipe(ctx);
@@ -297,13 +298,13 @@ public class Visitor extends amuParserBaseVisitor<Object>{
     public String getDestinationCoordinates(String s, String id){
         String destinationCoordinates = "";
         if(s.equalsIgnoreCase("up")){
-            destinationCoordinates = "X_"+id+", Y_"+id+" - "+DefaultSwipeAmountPx;
+            destinationCoordinates = "X_"+id+", Y_"+id+" - "+DEFAULT_SWIPE_PX_AMOUNT;
         }else if(s.equalsIgnoreCase("down")){
-            destinationCoordinates = "X_"+id+", Y_"+id+" + "+DefaultSwipeAmountPx;
+            destinationCoordinates = "X_"+id+", Y_"+id+" + "+DEFAULT_SWIPE_PX_AMOUNT;
         }else if(s.equalsIgnoreCase("left")){
-            destinationCoordinates = "X_"+id+" - "+DefaultSwipeAmountPx+", Y_"+id;
+            destinationCoordinates = "X_"+id+" - "+DEFAULT_SWIPE_PX_AMOUNT+", Y_"+id;
         }else{
-            destinationCoordinates = "X_"+id+" + "+DefaultSwipeAmountPx+", Y_"+id;
+            destinationCoordinates = "X_"+id+" + "+DEFAULT_SWIPE_PX_AMOUNT+", Y_"+id;
         }
         return destinationCoordinates;
     }

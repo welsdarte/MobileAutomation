@@ -7,7 +7,9 @@ TEST_OPEN
     : TEST_IDENT NEW_LINE* OPEN_BRACE NEW_LINE*
     ;
 SCENARIO_REF
-    : '<' SCENARIO_IDENT '>';
+    : '<' ' '* SCENARIO_IDENT ' '* '>'
+    | '<' ' '* SCENARIO_IDENT ' '* COLON' '* INTEGER ' '* '>'
+    ;
 fragment SCENARIO_IDENT
     : [_a-zA-Z][_0-9a-zA-Z]*
     ;

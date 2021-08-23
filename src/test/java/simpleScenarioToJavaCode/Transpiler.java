@@ -46,7 +46,7 @@ public class Transpiler {
     public static void main(String[] args) {
 
         try{
-            String fileName = "/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/simpleScenarioToJavaCode/scenarios.txt";
+            String fileName = "/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/simpleScenarioToJavaCode/input.amu";
             CharStream cs = fromFileName(fileName);
             amuLexer lexer = new amuLexer(cs);
             CommonTokenStream token = new CommonTokenStream(lexer);
@@ -62,12 +62,18 @@ public class Transpiler {
             String testContent= "BasePage basePage = new BasePage();\nThread.sleep(5 *1000);\n";
             for (int i = 0; i < visitor.tests.size(); i++) {
                 String s = visitor.tests.get(i).replaceAll("\n","");
-                if(s.startsWith("<") && s.endsWith(">")){
+                s = s.replaceAll(" ", "");
+                if(s.startsWith("<") && s.endsWith(">") && !s.contains(":")){
                     testContent += "basePage."+s.substring(1,s.length()-1)+"();\n";
-                } else if (s.equalsIgnoreCase("$testsEnd$")){
+                }else if(s.startsWith("<") && s.endsWith(">") && s.contains(":")){
+                    int iteration = Integer.parseInt(s.substring(s.indexOf(":")+1, s.indexOf(">")));
+                    s = s.replace("<", "");
+                    s = s.substring(0, s.indexOf(":"));
+                    testContent += "for(int i = 0; i++< "+iteration+"; )\n";
+                    testContent += "basePage."+s+"();\n";
+                }  else if (s.equalsIgnoreCase("$testsEnd$")){
                      TSTS += testContent;
-                     testContent ="BasePage basePage = new BasePage();\nThread.sleep(5 *1000);\n";
-
+                     testContent ="";
                 } else {
                     if (TSTS.length() > 0) {
                         TSTS += testContent ;
