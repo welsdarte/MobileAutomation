@@ -1,6 +1,6 @@
 
--[STRUCTURE](##Structure)
--[AMU LANGUAGE](##AMU Language)
+-[Structure](#STRUCTURE)
+-[AMU Language](#AMU LANGUAGE)
 
 ##Structure
 BasePage and TestCases are the main classes that hold out important test information.
