@@ -99,6 +99,14 @@ An .amu file consists of 3 parts:
   [amuParser.g4](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuParser.g4)
   
   
+  # Transpling
+  
+  The __visitor__ visits the parse tree rules and generate java code fragments like statements declarations etc. Generated codes stored in ArrayLists.
+  
+  __Transpiler__ takes those Arraylists and create Java code and overwrites it to BasePage and TestCases classes.
+  
+  If new features will be added to grammar, these files must be revised.
+  
   After Transpiler executed all the scenarios becomes java methods in BasePage.java and all the testCases becomes @Test annotations in TestCase.java.
   If a wanted action not supported by AMU then custom child classes can be created (UploadPhotoPage extends BasePage and UploadCases extends TestCases) and tests     can be written mannually according to the [above structure](#structure).
   
