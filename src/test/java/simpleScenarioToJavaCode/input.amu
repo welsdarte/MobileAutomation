@@ -31,7 +31,7 @@ cariKartSilEnUstten{
     I clicked the point 1000 400 then
     I clicked "Sil" then
     I clicked "Sil" then
-    I wait 10 seconds then
+    I wait 1 seconds then
 }
 teklifListele{
     I clicked "Teklif" then
@@ -57,12 +57,11 @@ yanlisCariEkle{
     I clicked "mevcuttur*" then
 }
 actions{
-    // click
     I click "some text" then
     I clicked left of "some text" and
     I click 200px up of "some text" then
-    I click the 4th indexableElement then //only switch works now
-    I click the 480, 120 and
+    I click the 4th switch then //only switch works now
+    I click the point 480, 120 and
     // type
     I typed "some string" to "some text" then
     I type "some string" and//only when a textEdit is clicked and focused
@@ -83,8 +82,9 @@ actions{
 
 // !--  Test Cases   --!
 tc(
-    <basitGiris >
-    < yanlisCariEkle : 14 >
+    <basitGiris>
+    <cariKartListele>
+    <cariKartSilEnUstten:3>
 )
 
 

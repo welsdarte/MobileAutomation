@@ -64,6 +64,7 @@ public class ScreenshotUtility implements ITestListener {
         }
         // If status = pass then set folder name "screenshots/Success"
         else if (status.equalsIgnoreCase("pass")) {
+            //return;
             destDir = "screenshots/Success";
         }
 

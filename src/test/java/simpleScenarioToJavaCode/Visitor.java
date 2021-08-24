@@ -146,10 +146,11 @@ public class Visitor extends amuParserBaseVisitor<Object>{
         }else{ // ex. the third switch
             String x_th = ctx.X_TH().toString();
             int index = Integer.parseInt(x_th.substring(0,x_th.length() - 2));
+            String ID = identifierGenerator("switch_"+index+"_");
             currentDeclaration = "@FindBy(xpath = \"//android.widget.Switch["+index+"]\")\n";
-            currentDeclaration+= "public WebElement "+identifierGenerator("Switch"+index)+";"; // ids can be mixed if there are multiple uses of indexable element finds
+            currentDeclaration+= "public WebElement "+ID+";"; // ids can be mixed if there are multiple uses of indexable element finds
 
-            currentStatement = identifierGenerator("Switch"+index)+".click();";
+            currentStatement = ID+".click();";
         }
         return super.visitActionClick(ctx);
     }
@@ -235,10 +236,10 @@ public class Visitor extends amuParserBaseVisitor<Object>{
             currentDeclaration+= "@FindBy(xpath = \"//*[@text='"+f(ctx.element(1).STRING())+"']\")\n";
             currentDeclaration+= "public WebElement "+ id1+";";
 
-            currentStatement =  "int Y_"+id+" = "+id+".getLocation().getY() + ("+id+".getSize().getHeight() / 2)\n" +
-                                "int X_"+id+" = "+id+".getLocation().getX() + ("+id+".getSize().getWidth() / 2)\n";
-            currentStatement += "int Y_"+id1+" = "+id1+".getLocation().getY() + ("+id1+".getSize().getHeight() / 2)\n" +
-                                "int X_"+id1+" = "+id1+".getLocation().getX() + ("+id1+".getSize().getWidth() / 2)\n";
+            currentStatement =  "int Y_"+id+" = "+id+".getLocation().getY() + ("+id+".getSize().getHeight() / 2);\n" +
+                                "int X_"+id+" = "+id+".getLocation().getX() + ("+id+".getSize().getWidth() / 2);\n";
+            currentStatement += "int Y_"+id1+" = "+id1+".getLocation().getY() + ("+id1+".getSize().getHeight() / 2);\n" +
+                                "int X_"+id1+" = "+id1+".getLocation().getX() + ("+id1+".getSize().getWidth() / 2);\n";
 
             currentStatement += "Util.swipe(new Point(X_"+id+", Y_"+id+"), new Point(X_"+id1+", Y_"+id1+"), Duration.ofMillis("+DEFAULT_SWIPE_TIME+"));";
         }else if(ctx.point(1) != null){
