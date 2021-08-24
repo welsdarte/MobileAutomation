@@ -38,6 +38,10 @@ An .amu file consists of 3 parts:
   `I clicked "Start" then`
   `I typed "pass1234" to "Enter password...`
   
+  __List of all available actions by now:___
+  ![Screen Shot 2021-08-24 at 15 04 51](https://user-images.githubusercontent.com/71753904/130613559-9d59067c-3c39-4008-a2f8-162c8fa42cf6.png)
+
+  
   # Scenario
   Scenarios are basic containers that can contain multiple actions. They are optimization solution for the test cases' length and complexity by reducing recurring     code size. A scenario block starts with a unique scenario name (identifier), { actions }
   
@@ -61,8 +65,10 @@ An .amu file consists of 3 parts:
   )
   ```
   
-  TestCase blocks must come after from all the scenarios in the .amu file. General amu syntax looks like this:
+  TestCase blocks must come after from all the scenarios in the .amu file. General amu code looks like this:
   
+  ![Screen Shot 2021-08-24 at 15 01 58](https://user-images.githubusercontent.com/71753904/130613381-fe5329db-fdc7-4710-9fb9-ec684dc239f9.png)
+
   ```
   scenario1{
     action1
@@ -81,17 +87,16 @@ An .amu file consists of 3 parts:
     <scenario2:10>
   )
   ```
-  for more: [lexer](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuLexer.g4), [parser](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuParser.g4)
+  
+  for more: [amuLexer.g4](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuLexer.g4), [amuParser.g4](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuParser.g4)
   
   
   After Transpiler executed all the scenarios becomes java methods in BasePage.java and all the testCases becomes @Test annotations in TestCase.java.
+  If a wanted action not supported by AMU then custom child classes can be created (UploadPhotoPage extends BasePage and UploadCases extends TestCases) and tests     can be written mannually according to the [above structure](#structure).
+  For manual tests:
+  [Appium Official Documentation](https://appium.io/docs/en/about-appium/api/)
+  [Appium series](https://www.youtube.com/watch?v=2MHxU2PohII&list=PLPO0LFyCaSo1DKak8ZhEJ3NXrj2shNM0N)
+  [Xpath tester](https://www.freeformatter.com/xpath-tester.html)
   
-
-
-
-
-
-
-![Screen Shot 2021-08-03 at 05 48 18](https://user-images.githubusercontent.com/71753904/128037175-676230fe-e5c1-4a19-b421-6934d86fb90b.png)
-![Screen Shot 2021-08-03 at 05 54 26](https://user-images.githubusercontent.com/71753904/128037505-c1e1320c-f0be-4722-a779-3216043b223d.png)
-
+  
+  
