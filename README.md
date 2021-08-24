@@ -1,8 +1,8 @@
 
--[Structure](#STRUCTURE)
--[AMU Language](#AMU LANGUAGE)
+-[Structure](#structure)
+-[AMU Language](#amu-language)
 
-##Structure
+#Structure
 BasePage and TestCases are the main classes that hold out important test information.
 All element declarations and actions goes into BasePage class or another class that inherits the BasePage class (CariPage etc.)
 All action combinations goes into TestCases class or it's child classes
@@ -24,7 +24,8 @@ now you can use these variable to perform simple actions like:
 - elementName.sendKeys("abc");
 
 
-##AMU Language
+#AMU Language
+
 
 
 
