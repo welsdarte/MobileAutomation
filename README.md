@@ -35,6 +35,7 @@ An .amu file consists of 3 parts:
   Actions are the command-like smallest code pieces in amu language and used for writing scenarios
   
   ex.
+  
   `I clicked "Start" then`
   
   `I typed "pass1234" to "Enter password...`
@@ -91,15 +92,18 @@ An .amu file consists of 3 parts:
   )
   ```
   
-  for more: [amuLexer.g4](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuLexer.g4), [amuParser.g4](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuParser.g4)
+  for more: 
+  
+  [amuLexer.g4](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuLexer.g4)
+  
+  [amuParser.g4](https://github.com/welsdarte/MobileAutomation/blob/master/src/amuParser.g4)
   
   
   After Transpiler executed all the scenarios becomes java methods in BasePage.java and all the testCases becomes @Test annotations in TestCase.java.
   If a wanted action not supported by AMU then custom child classes can be created (UploadPhotoPage extends BasePage and UploadCases extends TestCases) and tests     can be written mannually according to the [above structure](#structure).
+  
   For manual tests:
   - [Appium Official Documentation](https://appium.io/docs/en/about-appium/api/)
   - [Appium series](https://www.youtube.com/watch?v=2MHxU2PohII&list=PLPO0LFyCaSo1DKak8ZhEJ3NXrj2shNM0N)
   - [Xpath tester](https://www.freeformatter.com/xpath-tester.html)
-  
-  
   
