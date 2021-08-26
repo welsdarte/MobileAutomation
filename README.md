@@ -39,9 +39,9 @@ An .amu file consists of 3 parts:
   
   `I clicked "Start" then`
   
-  `I typed "pass1234" to "Enter password...`
+  `I typed "pass1234" to "Enter password..."`
   
-  __List of all available actions by now:___
+  __List of all available actions by now:__
   
   ![Screen Shot 2021-08-24 at 15 04 51](https://user-images.githubusercontent.com/71753904/130613559-9d59067c-3c39-4008-a2f8-162c8fa42cf6.png)
 
