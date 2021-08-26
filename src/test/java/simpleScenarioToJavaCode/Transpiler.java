@@ -117,7 +117,7 @@ public class Transpiler {
             pr.write(TestCode);
             pr.flush();
             pr.close();
-            pr = new PrintWriter("src/test/java/android/testCases/testCases.java");
+            pr = new PrintWriter("src/test/java/android/testCases/TestCases.java");
             pr.write(TestCode);
             pr.flush();
             pr.close();
