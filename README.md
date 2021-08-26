@@ -39,7 +39,7 @@ An .amu file consists of 3 parts:
   
   `I clicked "Start" then`
   
-  `I typed "pass1234" to "Enter password...`
+  `I typed "pass1234" to "Enter password..."`
   
   __List of all available actions by now:___
   
