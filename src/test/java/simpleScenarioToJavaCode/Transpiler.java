@@ -46,7 +46,7 @@ public class Transpiler {
     public static void main(String[] args) {
 
         try{
-            String fileName = "/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/simpleScenarioToJavaCode/input.amu";
+            String fileName = "src/test/java/simpleScenarioToJavaCode/input.amu";
             CharStream cs = fromFileName(fileName);
             amuLexer lexer = new amuLexer(cs);
             CommonTokenStream token = new CommonTokenStream(lexer);
@@ -105,19 +105,19 @@ public class Transpiler {
             //System.out.println(" <<<<<<<<<<<<<<<<<<<< statements to copy paste >>>>>>>>>>>>>>>>>>>> \n"+STTS);
             JavaCode+="}";
 
-            PrintWriter pr = new PrintWriter("/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/simpleScenarioToJavaCode/outBasePage.txt");
+            PrintWriter pr = new PrintWriter("src/test/java/simpleScenarioToJavaCode/outBasePage.txt");
             pr.write(JavaCode);
             pr.flush();
             pr.close();
-            pr = new PrintWriter("/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/android/pageObjects/BasePage.java");
+            pr = new PrintWriter("src/test/java/android/pageObjects/BasePage.java");
             pr.write(JavaCode);
             pr.flush();
             pr.close();
-            pr = new PrintWriter("/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/simpleScenarioToJavaCode/outTestCases.txt");
+            pr = new PrintWriter("src/test/java/simpleScenarioToJavaCode/outTestCases.txt");
             pr.write(TestCode);
             pr.flush();
             pr.close();
-            pr = new PrintWriter("/Users/admin/IdeaProjects/com.diaAppTest/src/test/java/android/testCases/testCases.java");
+            pr = new PrintWriter("src/test/java/android/testCases/testCases.java");
             pr.write(TestCode);
             pr.flush();
             pr.close();
